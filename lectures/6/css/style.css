@@ -4,9 +4,18 @@
 a {
     color: #70579D;
 }
+<<<<<<< HEAD
+
+#main{
+
+    max-width: 800px;
+    margin: auto;
+
+=======
 #main{
     max-width: 800px;
     margin: auto;
+>>>>>>> remotes/upstream/master
 }
 .article{
     border: 1px solid #E8E8E8;
@@ -17,8 +26,14 @@ a {
     background-color: #ffffff;
 }
 .article-name h1{
+<<<<<<< HEAD
+
+    font-size: 24px;
+    font-family: 'Bangers' ,'cursive';
+=======
     font-size: 24px;
     font-family: 'Bangers',cursive;
+>>>>>>> remotes/upstream/master
     letter-spacing: 3px;
     margin-bottom: 0;
 }
@@ -30,6 +45,21 @@ a {
     width: 24px;
     line-height: 3.5;
 }
+<<<<<<< HEAD
+.article-opt:hover
+{
+    color:red;
+}
+.article-overview
+{
+    font-size: 75%;
+
+}
+.article-overview a
+{
+    text-decoration: none;
+
+=======
 .article-opt:hover{
     color: red;
 }
@@ -39,6 +69,7 @@ a {
 }
 .article-overview a {
     text-decoration: none;
+>>>>>>> remotes/upstream/master
 }
 .article-overview a:hover{
     text-decoration: underline;
@@ -57,6 +88,17 @@ a {
     width: 100%;
     margin-top: 30px;
 }
+<<<<<<< HEAD
+.lister-list > .lister-item{
+    background-color: #f6f6f5;
+    margin-bottom: 3px;
+    padding: 10px 10px 20px;
+}
+.lister-list > .lister-item > .lister-item-image{
+     display: inline-block;
+ }
+.lister-list > .lister-item > .lister-item-image img{
+=======
 .lister-list > .lister-item {
     background-color: #f6f6f5;
     margin-bottom: 3px;
@@ -67,10 +109,38 @@ a {
     display: inline-block;
 }
 .lister-list > .lister-item > .lister-item-image img {
+>>>>>>> remotes/upstream/master
     box-shadow: 3px 2px 3px 1px rgba(0,0,0,0.5);
     height: 200px;
     width: 120px;
 }
+<<<<<<< HEAD
+.lister-list > .lister-item > .lister-item-content {
+    width: 80%;
+    float: right;
+}
+.lister-list > .lister-item > .lister-item-content > h3 {
+    margin:0 0 0.5em;
+    padding: 0;
+
+}
+.lister-list > .lister-item >.lister-item-content > h3 > a {
+    color: #70579D;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Bangers' , 'cursive';
+    letter-spacing: 3px;
+}
+.lister-list > .lister-item > .lister-item-content > h3 > .lister-item-year {
+    font-size: small;
+    font-weight: normal;
+}
+.lister-list > .lister-item > .lister-item-content > .lister-item-summary{
+    line-height: 140%;
+    font-size: 13px;
+}
+.lister-list > .lister-item > .lister-item-content > .lister-item-summary::first-letter{
+=======
 .lister-list > .lister-item > .lister-item-content{
     width: 80%;
     float: right;
@@ -97,6 +167,7 @@ a {
     max-height: 70px;*/
 }
 .lister-list > .lister-item > .lister-item-content > .lister-item-summary::first-letter {
+>>>>>>> remotes/upstream/master
     color: #70579D;
     font-size: 1.3em;
 }
@@ -104,8 +175,12 @@ p.lister-item-summary::selection{
     color: yellow;
     background: red;
 }
+<<<<<<< HEAD
+.lister-list > .lister-item > .lister-item-content a {
+=======
 .lister-list > .lister-item > .lister-item-content a
 {
+>>>>>>> remotes/upstream/master
     text-decoration: none;
     color: #70579D;
 }
