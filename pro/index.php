@@ -1,9 +1,13 @@
 
 
 <?php
-require_once("server/db_connection.php");
-include_once("server/functions.php");
+include_once("../server/functions.php");
+require_once("../server/db_connection.php");
 ?>
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -72,18 +76,6 @@ include_once("server/functions.php");
                     Categories
                 </a>
                 <ul class="collapse show list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a class="nav-link"  href="#">Laptops</a>
-                    </li>
-                    <li>
-                        <a class="nav-link"  href="#">Computers</a>
-                    </li>
-                    <li>
-                        <a class="nav-link"  href="#">Mobiles</a>
-                    </li>
-                    <li>
-                        <a class="nav-link"  href="#">Tablets</a>
-                    </li>
                     <?php
                     $rows = getCategory();
                     for ($i = 0; $i < mysqli_num_rows($rows); $i++) {
@@ -99,18 +91,6 @@ include_once("server/functions.php");
                     Brands
                 </a>
                 <ul class="collapse show list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a class="nav-link" href="#">Apple</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Sony</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Dell</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Toshiba</a>
-                    </li>
                     <?php
                     $rows = getBrands();
                     for ($i = 0; $i < mysqli_num_rows($rows); $i++) {

@@ -5,5 +5,5 @@ $password = "";
 $databaseName = "tech box";
 $connection = mysqli_connect($host, $username, $password, $databaseName);
 if(!$connection)
-    die("your connection is failed....!!!");
+    die("sorry connection failed.........!!!!");
 ?>
