@@ -1,0 +1,20 @@
+<?php
+function getCategory()
+{
+    global $connection;
+    $query = "SELECT * FROM `category`";
+    $data = mysqli_query($connection, $query);
+    if(!$query)
+        die("Error in Query !");
+    return $data;
+}
+function getBrands()
+{
+    global $connection;
+    $query = "SELECT * FROM `brands`";
+    $data = mysqli_query($connection, $query);
+    if(!$query)
+        die("Error in query.... !");
+    return $data;
+}
+?
