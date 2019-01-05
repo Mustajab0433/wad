@@ -1,0 +1,51 @@
+<?php
+require_once "db_connection.php";
+
+function getCats(){
+    global $con;
+    $getCatsQuery = "select * from categories";
+    $getCatsResult = mysqli_query($con,$getCatsQuery);
+    while($row = mysqli_fetch_assoc($getCatsResult)){
+        $cat_id = $row['cat_id'];
+        $cat_title = $row['cat_title'];
+        echo "<li><a class='nav-link'  href='#'>$cat_title</a></li>";
+    }
+}
+function getBrands(){
+    global $con;
+    $getBrandsQuery = "select * from brands";
+    $getBrandsResult = mysqli_query($con,$getBrandsQuery);
+    while($row = mysqli_fetch_assoc($getBrandsResult)){
+        $brand_id = $row['brand_id'];
+        $brand_title = $row['brand_title'];
+        echo "<li><a class='nav-link'  href='#'>$brand_title</a></li>";
+    }
+}
+
+function getdbdate(){
+    global $con;
+
+    $getproductcontent = "select * from products";
+    $getproductsresult = mysqli_query($con,$getproductcontent);
+
+    while($row = mysqli_fetch_assoc($getproductsresult)){
+
+        $pro_id = $row['pro_id'];
+        $pro_title = $row['pro_title'];
+        $pro_cat = $row['pro_cat'];
+        $pro_brand = $row['pro_brand'];
+        $pro_price = $row['pro_price'];
+        $pro_desc = $row['pro_desc'];
+        $pro_kw = $row['pro_keywords'];
+
+
+        echo "<p>$pro_title</p>";
+        echo "<p>$pro_cat</p>";
+
+        echo "<p>$pro_desc</p>";
+        echo "<p>$pro_kw</p>";
+
+
+    }
+
+}
