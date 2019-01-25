@@ -1,148 +1,128 @@
-<?php
-session_start();
-require_once "db_connection.php";
-if(!isset($_SESSION['user_email'])){
-    header('location: login.php?not_admin=You are not Admin!');
-}
-?>
 <!DOCTYPE html>
+<?php
+require "server/functions.php";
+?>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="">
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <meta charset="UTF-8">
+    <title>Tech Box</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers|Old+Standard+TT">
-    <title>TechBox Admin Panel</title>
-    <style>
-        * {
-            font-family: 'Old Standard TT', serif;
+
+    <script>
+        function Search(sea) {
+            var search = new XMLHttpRequest();
+            search.onreadystatechange = function (){
+                document.getElementById("search").innerText = this.responseText;
+            }
+            search.open("get","search_product.php?s="+sea);
+            search.send();
         }
-    </style>
+    </script>
 </head>
 <body>
-<div class="wrapper">
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3><img src="../media/logo.png"> Admin Panel</h3>
+
+<header class="container-fluid">
+    <div class="row">
+        <div class="col-12 no-padding">
+            <nav class="navbar navbar-light bg-light navbar-expand-sm fixed-top">
+                <a class="navbar-brand" href="index.php"><img src="media/logo.png" width="175" height="50" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse row" id="navbarToggler">
+                    <div class="col-lg-8 offset-lg-1 col-md-8 col-sm-7">
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input  type="search" class="form-control"
+                                        id="search-bar" name="search"
+                                        placeholder="Find Mobile Phones, Laptops, and more.."
+                                        onkeyup="Search(this.value)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-lg" type="submit"><i class="fas fa-search"></i></button>
+                                </div>
+                                <span id="search"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-sm-right">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html"><i class="fas fa-heart sc-color fa-2x"></i></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html"><i class="fas fa-shopping-cart sc-color fa-2x"></i></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html"> <span class="sc-fs">Login </span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
+    </div>
+
+</header>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar" class="bg-light">
         <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle nav-link">
+                    <i class="fas fa-sitemap"></i>
+                    Categories
+                </a>
+                <ul class="collapse show list-unstyled" id="homeSubmenu">
+                    <?php getCats(); ?>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle nav-link">
+                    <i class="fas fa-briefcase"></i>
+                    Brands
+                </a>
+                <ul class="collapse show list-unstyled" id="pageSubmenu">
+                    <?php getBrands(); ?>
+                </ul>
+            </li>
             <li>
-                <a href="index.php?insert_product">
-                    <i class="fas fa-plus"></i> Insert New Product
+                <a class="nav-link"  href="#">
+                    <i class="fas fa-question"></i>
+                    FAQ
                 </a>
             </li>
             <li>
-                <a href="index.php?view_products">
-                    <i class="fas fa-sitemap"></i> View All Products
+                <a class="nav-link"  href="#">
+                    <i class="fas fa-paper-plane"></i>
+                    Contact
                 </a>
-            </li>
-            <li>
-                <a href="index.php?insert_category">
-                    <i class="fas fa-plus"></i> Insert New Category
-                </a>
-            </li>
-            <li>
-                <a href="index.php?view_categories">
-                    <i class="fas fa-band-aid"></i> View All Categories
-                </a>
-            </li>
-            <li>
-                <a href="index.php?insert_brand">
-                    <i class="fas fa-plus"></i> Insert New Brand
-                </a>
-            </li>
-            <li>
-                <a href="index.php?view_brands">
-                    <i class="fas fa-toolbox"></i> View All Brands</a>
-            </li>
-            <li>
-                <a href="index.php?view_customers">
-                    <i class="fa fa-user-tie"></i> View Customers</a>
-            </li>
-            <li>
-                <a href="index.php?view_orders">
-                    <i class="fa fa-shopping-bag"></i> View Orders</a>
-            </li>
-            <li>
-                <a href="index.php?view_payments">
-                    <i class="fa fa-credit-card"></i> View Payments</a>
-            </li>
-            <li>
-                <a href="logout.php">
-                    <i class="fa fa-sign-out-alt"></i> Admin logout</a>
             </li>
         </ul>
     </nav>
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-        <div class="container">
-            <h2 class="text-center text-primary"><?php echo @$_GET['logged_in']?></h2>
-            <?php
-            if(isset($_GET['insert_product'])){
-                include ('insert_product.php');
-            }
-            else if(isset($_GET['view_products'])){
-                include ('view_products.php');
-            }
-            else if(isset($_GET['edit_pro'])){
-                include ('edit_pro.php');
-            }
-            else if(isset($_GET['del_pro'])){
-                include ('del_pro.php');
-            }
-            else if(isset($_GET['view_categories'])){
-                include ('view_categories.php');
-            }
-            else if(isset($_GET['insert_category'])){
-                include ('insert_category.php');
-            }
-            else if(isset($_GET['edit_cat'])){
-                include ('edit_cat.php');
-            }
-            else if(isset($_GET['del_cat'])){
-                include ('del_cat.php');
-            }
-            else if(isset($_GET['view_brands'])) {
-                include('view_brands.php');
-            }
-            else if(isset($_GET['insert_brand'])) {
-                include('insert_brand.php');
-            }
-            else if(isset($_GET['edit_brand'])) {
-                include('edit_brand.php');
-            }
-            else if(isset($_GET['del_brand'])) {
-                include('del_brand.php');
-            }
-            else if(isset($_GET['view_customers'])){
-                include ('view_customers.php');
-            }
-            else if(isset($_GET['del_customer'])){
-                include ('del_customer.php');
-            }
-            ?>
+    <article id="content" class="container-fluid bg-white">
+
+        <div class="row">
+            <?php getPro(); ?>
+        </div>
+    </article>
+
+
+</div>
+<footer class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
+            &copy; 2019 by Muhammad Ali Makhdoom
         </div>
     </div>
-</div>
-<script src="../js/jquery-3.3.1.js"></script>
-<script src="../js/bootstrap.bundle.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
-    });
-</script>
+</footer>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>
